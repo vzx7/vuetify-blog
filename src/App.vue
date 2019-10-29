@@ -2,17 +2,19 @@
   <!-- App.vue -->
 
   <v-app id="inspire">
-      <template>
-        <div>
-          <v-toolbar>
-            <v-toolbar-title>Title</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-toolbar-items>
-              <v-btn v-for="(item, index) of items" :key="index" :to="item.url" text>{{ item.title }}</v-btn>
-            </v-toolbar-items>
-          </v-toolbar>
-        </div>
-      </template>
+    <template>
+      <div>
+        <v-toolbar>
+          <v-toolbar-title>
+            <router-link to="/" tag="span" class="pointer">MY APP</router-link>
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn v-for="(item, index) of items" :key="index" :to="item.url" text>{{ item.title }}</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+      </div>
+    </template>
 
     <!-- Sizes your content based upon application components -->
     <v-content>
@@ -34,8 +36,12 @@ export default {
       { title: "My ad", icon: "mdi-format-list-bulleted-square", url: "/list" }
     ]
   }),
-  methods: {
-   
-  }
+  methods: {}
 };
 </script>
+
+<style scoped>
+.pointer {
+  cursor: pointer;
+}
+</style>
