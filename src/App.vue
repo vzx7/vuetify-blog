@@ -1,36 +1,41 @@
 <template>
-  <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
+  <!-- App.vue -->
 
+  <v-app id="inspire">
+      <template>
+        <div>
+          <v-toolbar>
+            <v-toolbar-title>Title</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+              <v-btn v-for="(item, index) of items" :key="index" :to="item.url" text>{{ item.title }}</v-btn>
+            </v-toolbar-items>
+          </v-toolbar>
+        </div>
+      </template>
+
+    <!-- Sizes your content based upon application components -->
     <v-content>
-      <HelloWorld/>
+      <!-- If using vue-router -->
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
+  name: "App",
   data: () => ({
-    //
+    items: [
+      { title: "Login", icon: "mdi-lock", url: "/login" },
+      { title: "Registrtation", icon: "mdi-face", url: "/registration" },
+      { title: "Orders", icon: "mdi-bookmark", url: "/orders" },
+      { title: "New ad", icon: "mdi-note-plus", url: "/new" },
+      { title: "My ad", icon: "mdi-format-list-bulleted-square", url: "/list" }
+    ]
   }),
+  methods: {
+   
+  }
 };
 </script>
