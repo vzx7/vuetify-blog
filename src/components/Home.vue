@@ -6,7 +6,7 @@
           <template>
             <v-carousel>
               <v-carousel-item
-                v-for="(ad, i) in ads"
+                v-for="(ad, i) in promoAds"
                 :key="i"
                 :src="ad.imageSrc"
                 reverse-transition="fade-transition"
@@ -57,33 +57,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      ads: [
-        {
-          title: "First",
-          description: "Hello I am description",
-          promo: false,
-          imageSrc:
-            "https://bipbap.ru/wp-content/uploads/2017/04/0_7c779_5df17311_orig.jpg",
-          id: 12
-        },
-        {
-          title: "Second",
-          description: "Hello I am description",
-          promo: true,
-          imageSrc: "https://klike.net/uploads/posts/2019-07/1563795460_1.jpg",
-          id: 13
-        },
-        {
-          title: "Third",
-          description: "Hello I am description",
-          promo: true,
-          imageSrc: "https://bipbap.ru/wp-content/uploads/2017/04/2-16.jpg",
-          id: 27
-        }
-      ]
-    };
+  computed: {
+    promoAds() {
+      return this.$store.getters.promoAds;
+    },
+    ads() {
+      return this.$store.getters.ads;
+    }
   }
 };
 </script>
