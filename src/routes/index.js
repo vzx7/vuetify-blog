@@ -8,6 +8,7 @@ import Registration from '../components/Auth/Registration';
 import Orders from '../components/User/Orders';
 
 export default new VueRouter({
+    mode: 'history',
     routes: [
         {
             path: '',
