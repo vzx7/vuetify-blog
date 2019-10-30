@@ -67,9 +67,11 @@ export default {
         const ad = {
           title: this.title,
           description: this.description,
-          promo: this.promo
+          promo: this.promo,
+          imageSrc: 'https://i.ytimg.com/vi/Kbcida1PxhI/maxresdefault.jpg'
         };
-        console.log(ad)
+
+        this.$store.dispatch('createAd', ad);
       }
     }
   }

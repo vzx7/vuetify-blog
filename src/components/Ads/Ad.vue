@@ -3,10 +3,10 @@
     <v-layout row wrap>
       <v-flex xs12>
         <v-card>
-          <v-img contain height="300" src="https://bipbap.ru/wp-content/uploads/2017/04/2-16.jpg"></v-img>
+          <v-img contain height="300" :src="ad.imageSrc"></v-img>
           <v-card-text>
-              <h1 class="text--primary">lorem</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, inventore suscipit. Ratione animi, accusamus labore nostrum obcaecati tenetur error reprehenderit sit magnam. Laborum, delectus cumque? Iste excepturi deserunt possimus id.</p>
+              <h1 class="text--primary">{{ ad.title }}</h1>
+              <p>{{ ad.description }}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -21,8 +21,12 @@
 
 <script>
 export default {
-  data() {
-    return {};
+  props: ['id'],
+  computed: {
+    ad() {
+      const id = this.id;
+      return this.$store.getters.adById(id);
+    }
   }
 };
 </script>
