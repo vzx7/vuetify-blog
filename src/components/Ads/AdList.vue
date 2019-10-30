@@ -2,26 +2,24 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <h1 class="text--secondary mb-3">My ads</h1>
-        <v-list subheader two-line flat>
-          <v-list-item-group v-model="settings" multiple>
-            <v-list-item v-for="order in myAds" :key="order.id">
-              <template v-slot:default="{ active, toggle }">
-                <v-list-item-action>
-                  <v-checkbox @change="markDown(order)" :input-value="order.done" color="success"></v-checkbox>
-                </v-list-item-action>
-
-                <v-list-item-content>
-                  <v-list-item-title>{{ order.name }}</v-list-item-title>
-                  <v-list-item-subtitle>{{ order.phone }}</v-list-item-subtitle>
-                </v-list-item-content>
-                <v-list-tile-action>
-                  <v-btn class="primary">Open</v-btn>
-                </v-list-tile-action>
-              </template>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
+        <h1 class="text-seccondary mb-3">My ads</h1>
+        <v-card class="elevetion-10 mb-3" v-for="ad in myAds" :key="ad.id">
+          <v-layout row>
+            <v-flex xs4>
+              <v-img :src="ad.imageSrc" height="160"></v-img>
+            </v-flex>
+            <v-flex xs8>
+              <v-card-text>
+                <h2 class="text-primary">{{ad.title}}</h2>
+                <p>{{ad.description}}</p>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn class="info" :to="`/ad/${ad.id}`">Open</v-btn>
+              </v-card-actions>
+            </v-flex>
+          </v-layout>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>
@@ -31,12 +29,7 @@
 export default {
   computed: {
     myAds() {
-      return this.$store.getters.myAds
-    }
-  },
-  methods: {
-    markDown(order) {
-      order.done = true;
+      return this.$store.getters.myAds;
     }
   }
 };
