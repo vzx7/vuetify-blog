@@ -21,6 +21,12 @@
       <!-- If using vue-router -->
       <router-view></router-view>
     </v-content>
+    <template v-if="error">
+      <v-snackbar :value="true" :multi-line="true" :timeout="5000" color="error" @input="closeError">
+        {{error}}
+        <v-btn dark text @click.native="closeError">close</v-btn>
+      </v-snackbar>
+    </template>
   </v-app>
 </template>
 
@@ -36,7 +42,16 @@ export default {
       { title: "My ad", icon: "mdi-format-list-bulleted-square", url: "/list" }
     ]
   }),
-  methods: {}
+  methods: {
+    closeError() {
+      this.$store.dispatch("clearError");
+    }
+  },
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    }
+  }
 };
 </script>
 

@@ -32,7 +32,7 @@
 
                   <v-text-field
                     v-model="confirmPassword"
-                    id="password"
+                    id="password-repeat"
                     label="Confirm password"
                     name="confirm-password"
                     prepend-icon="mdi-lock"
@@ -44,7 +44,12 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn @click="onSubmit" color="primary" :disabled="!valid">Create account</v-btn>
+                <v-btn
+                  @click="onSubmit"
+                  color="primary"
+                  :disabled="!valid || loading"
+                  :loading="loading"
+                >Create account</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -61,7 +66,7 @@ export default {
     return {
       email: "",
       password: "",
-      confirmPassword: '',
+      confirmPassword: "",
       valid: false,
       emailRules: [
         v => !!v || "E-mail is required",
@@ -75,7 +80,7 @@ export default {
       ],
       confirmPasswordRules: [
         v => !!v || "Password is required",
-        v => v === this.password || 'Password should match'
+        v => v === this.password || "Password should match"
       ]
     };
   },
@@ -87,8 +92,15 @@ export default {
           password: this.password
         };
 
-        console.log(user);
+        this.$store
+          .dispatch("registerUser", user)
+          .then(() => this.$router.push("/"));
       }
+    }
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
     }
   }
 };
